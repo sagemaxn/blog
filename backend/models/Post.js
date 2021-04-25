@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-    text: { type: String,}
+    text: {
+        type: String,
+        required: [true, 'Please add text']
+    }
 }, {
     timestamps: true,
 });

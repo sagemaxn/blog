@@ -1,39 +1,62 @@
 const router = require('express').Router();
-let Post = require('../models/post.model');
+let Post = require('../models/Post');
 
-router.route('/').get((req, res) => {
+router.route('/').get(async (req, res) => {
     Post.find()
-        .then(posts => res.json(posts))
-        .catch(err => res.status(400).json('Error: ' + err))
+        try {
+            post => res.json(post)
+        }
+        catch {
+            err => res.status(400).json('Error: ' + err)
+        }
 });
 
-router.route('/add').post((req, res) => {
+router.route('/add').post(async (req, res) => {
     const text = req.body.text; 
-
     const newPost = new Post({
         text
     })
 newPost.save()
-.then(() => res.json('Post added!'))
-.catch(err => res.status(400).json('Error: ' + err))
+    try {
+        () => res.json('Post added!')
+    }
+    catch {
+        err => res.status(400).json('Error: ' + err)
+    }
 });
 
-router.route('/:id').delete((req, res) => {
+router.route('/:id').get(async (req, res) => {
+    Post.findById(req.params.id)
+    try {
+        post => res.json(post)
+    }
+    catch {
+        err => res.status(400).json('Error: ' + err)
+    }
+})
+
+router.route('/:id').delete(async (req, res) => {
     Post.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Post deleted.'))
-    .catch(err => res.status(400).json('Error ' + err))
+    try {
+        () => res.json('Post deleted.')
+    }
+    catch {
+        err => res.status(400).json('Error ' + err)
+    }
 });
 
-router.route('/update/:id').post((req, res) => {
-    Post.findById()
-    .then(post => {
+router.route('/update/:id').post(async (req, res) => {
+    Post.findById(req.params.id)
+    try {
+        post => {
         post.text = req.body.text
-
         post.save()
         .then(() => res.json('Post updated!'))
         .catch(err => res.status(400).json('Error: ' + err))
-    })
-    .catch(err => res.status(400).json('Error: ' + err))
+    }}
+    catch {
+        err => res.status(400).json('Error: ' + err)
+    }
 })
 
 

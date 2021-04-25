@@ -1,11 +1,15 @@
 const router = require('express').Router();
 const { model } = require('mongoose');
-let Admin = require('../models/admin.model');
+let Admin = require('../models/Admin');
 
-router.route('/').get((req, res) => {
+router.route('/').get(async (req, res) => {
     Admin.find()
-        .then(admins => res.json(admins))
-        .catch(err => res.status(400).json('Error: ' + err))
+        try {
+            admins => res.json(admins)
+        }
+        catch {
+            err => res.status(400).json('Error: ' + err)
+        }
 });
 
 module.exports = router;
