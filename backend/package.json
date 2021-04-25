@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagemaxn/blog.git"
+  },
+  "author": "Sage Maxwell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sagemaxn/blog/issues"
+  },
+  "homepage": "https://github.com/sagemaxn/blog#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "mongoose": "^5.12.5"
+  }
+}
